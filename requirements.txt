@@ -1,0 +1,4 @@
+awscli
+boto3
+cronex==0.1.2
+pytz
