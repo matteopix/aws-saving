@@ -13,6 +13,8 @@ This package contains the classes for managing the saving of the AWS services.
    :caption: Contents:
 
    overview
+   usage
+   development
 
 Indices and tables
 ==================
