@@ -1,0 +1,124 @@
+service: saving
+description: Lambda function for saving the services costs
+provider:
+  name: aws
+  stage: ${opt:stage, 'development'}
+  runtime: python3.7
+  region: ${opt:region, 'eu-west-1'}
+  memorySize: 512
+  timeout: 300
+  profile: ${opt:profile, ''}
+  stackTags:
+    Saving: ${self:custom.savingTags.saving.${self:provider.stage}, self:custom.savingTags.saving.default}
+    Delete: ${self:custom.savingTags.delete.${self:provider.stage}, self:custom.savingTags.delete.default} 
+  deploymentBucket:
+    blockPublicAccess: true
+  tags:
+    Saving: ${self:custom.savingTags.saving.${self:provider.stage}, self:custom.savingTags.saving.default}
+    Delete: ${self:custom.savingTags.delete.${self:provider.stage}, self:custom.savingTags.delete.default}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - cloudformation:*
+        - ec2:*
+        - lambda:*
+        - logs:*
+        - iam:*
+        - rds:*
+        - s3:*
+      Resource: "*"
+
+custom:
+  pythonRequirements:
+    pythonBin: /usr/bin/python3
+  stage:
+    production: production
+    staging: staging
+    default: default
+  functionName:
+    production: saving
+    default: saving-${self:provider.stage}
+  resources:
+    Protection: False
+    ImageId: ami-030d7f4bcfae3b935
+    InstanceType: t2.micro
+    BucketName: saving-bucket-tests
+    MasterUsername: masteruser
+    MasterUserPassword: '*THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE'
+    DBClusterClass: db.t2.small
+    DBInstanceClass: db.t2.micro
+    AllocatedStorage: 5
+    SavingValue: Enabled
+    # SavingValue: Disabled
+    ActionKey: Delete
+    # ActionKey: Stop
+    # ActionKey: Start
+    ActionValue: '. . . . .' # for testing at anytime
+    # ActionValue: '0 18 . . .' 
+  savingTags:
+    saving:
+      production: Disabled
+      staging: Disabled
+      default: Enabled
+    delete:
+      production: '0 18 30 2 .' # for added safety, a non-existent day
+      staging: '0 18 30 2 .' # for added safety, a non-existent day
+      default: ${self:custom.resources.ActionValue}
+      # default: '. . . . .' # for testing at anytime
+      # default: '0 18 . . .'
+  schedulingEnabled:
+    production: true
+    default: false
+  schedule:
+    production:
+      - schedule:
+          rate: cron(0 6-20 * * ? *)
+          enabled: ${self:custom.schedulingEnabled.${self:provider.stage}, self:custom.schedulingEnabled.default}
+          input:
+            # force:
+            #   - i-01234567890
+            # invoke_lambda: true
+            services_name:
+              - cloudformation
+              - ec2
+              - rds
+              - s3
+            # timezone: 'Europe/Rome'
+    default:
+
+package:
+  include:
+    - ./aws_saving/**
+  exclude:
+    - ./tests/**
+    - ./docs/**
+
+plugins:
+  - serverless-python-requirements
+
+functions:
+  Saving:
+    name: ${self:custom.functionName.${self:provider.stage}, self:custom.functionName.default}
+    handler: aws_saving/saving.main
+    reservedConcurrency: 1
+    events: ${self:custom.schedule.${self:provider.stage}, self:custom.schedule.default}
+  # S3:
+  #   name: s3-${self:custom.functionName.${self:provider.stage}, self:custom.functionName.default}
+  #   handler: aws_saving/S3.main
+  #   reservedConcurrency: 1
+  # Ec2:
+  #   name: ec2-${self:custom.functionName.${self:provider.stage}, self:custom.functionName.default}
+  #   handler: aws_saving/Ec2.main
+  #   reservedConcurrency: 1
+  # Rds:
+  #   name: rds-${self:custom.functionName.${self:provider.stage}, self:custom.functionName.default}
+  #   handler: aws_saving/Rds.main
+  #   reservedConcurrency: 1
+  # Cloudformation:
+  #   name: cloudformation-${self:custom.functionName.${self:provider.stage}, self:custom.functionName.default}
+  #   handler: aws_saving/Cloudformation.main
+  #   reservedConcurrency: 1
+
+resources:
+  Description: ${self:service} - ${self:provider.stage}
+  Resources: ${file(./${self:custom.stage.${self:provider.stage}, self:custom.stage.default}.resources.yaml)}

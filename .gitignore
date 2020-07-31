@@ -3,4 +3,7 @@
 *.pyc
 __pycache__
 docs/build
+.serverless
+node_modules
+package-lock.json
 tmp

@@ -1,0 +1,59 @@
+EC2:
+    Type: AWS::EC2::Instance
+    Properties:
+        ImageId: ${self:custom.resources.ImageId}
+        InstanceType: ${self:custom.resources.InstanceType}
+        DisableApiTermination: ${self:custom.resources.Protection}
+        Tags:
+        - Key: Saving
+          Value: ${self:custom.resources.SavingValue}
+        - Key: ${self:custom.resources.ActionKey}
+          Value: ${self:custom.resources.ActionValue}
+S3:
+    Type: AWS::S3::Bucket
+    Properties:
+        BucketName: ${self:custom.resources.BucketName}
+        Tags:
+        - Key: Saving
+          Value: ${self:custom.resources.SavingValue}
+        - Key: ${self:custom.resources.ActionKey}
+          Value: ${self:custom.resources.ActionValue}
+RDSCluster:
+    Type: AWS::RDS::DBCluster
+    Properties:
+        Engine: aurora
+        MasterUsername: ${self:custom.resources.MasterUsername}
+        MasterUserPassword: ${self:custom.resources.MasterUserPassword}
+        DeletionProtection: ${self:custom.resources.Protection}
+        Tags:
+        - Key: Saving
+          Value: ${self:custom.resources.SavingValue}
+        - Key: ${self:custom.resources.ActionKey}
+          Value: ${self:custom.resources.ActionValue}
+RDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+        Engine: aurora
+        DBClusterIdentifier:
+            Ref: RDSCluster
+        DBInstanceClass: ${self:custom.resources.DBClusterClass}
+        Tags:
+        - Key: Saving
+          Value: ${self:custom.resources.SavingValue}
+        - Key: ${self:custom.resources.ActionKey}
+          Value: ${self:custom.resources.ActionValue}
+OnlyRDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+        Engine: mysql
+        MasterUsername: ${self:custom.resources.MasterUsername}
+        MasterUserPassword: ${self:custom.resources.MasterUserPassword}
+        AllocatedStorage: ${self:custom.resources.AllocatedStorage}
+        DBInstanceClass: ${self:custom.resources.DBInstanceClass}
+        DeletionProtection: ${self:custom.resources.Protection}
+        Tags:
+        - Key: Saving
+          Value: ${self:custom.resources.SavingValue}
+        - Key: ${self:custom.resources.ActionKey}
+          Value: ${self:custom.resources.ActionValue}
+    
