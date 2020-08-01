@@ -1,0 +1,17 @@
+{
+    "DBInstances": [
+        {
+            "DBInstanceIdentifier": "aurora-1",
+            "DBInstanceStatus": "stopped",
+            "DBClusterIdentifier": "aurora-cluster",
+            "DBInstanceArn": "arn:aws:rds:eu-west-1:012345667890:db:aurora-1",
+            "DeletionProtection": false
+        },
+        {
+            "DBInstanceIdentifier": "rds-1",
+            "DBInstanceStatus": "stopped",
+            "DBInstanceArn": "arn:aws:rds:eu-west-1:012345667890:db:rds-1",
+            "DeletionProtection": false
+        }
+    ]
+}

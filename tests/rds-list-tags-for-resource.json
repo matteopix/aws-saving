@@ -1,0 +1,16 @@
+{
+    "TagList": [
+        {
+            "Key": "Start",
+            "Value": "0 8 1-10 . ."
+        },
+        {
+            "Key": "Stop",
+            "Value": "0 18 1-10 . ."
+        },
+        {
+            "Key": "Saving",
+            "Value": "Enabled"
+        }
+    ]
+}
