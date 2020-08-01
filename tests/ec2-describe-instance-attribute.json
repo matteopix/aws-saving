@@ -1,0 +1,6 @@
+{
+    "DisableApiTermination": {
+        "Value": false
+    },
+    "InstanceId": "i-01234567890"
+}

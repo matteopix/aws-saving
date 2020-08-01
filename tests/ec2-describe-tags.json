@@ -1,0 +1,22 @@
+{
+    "Tags": [
+        {
+            "Key": "Start",
+            "ResourceId": "i-0345187d19860bb9a",
+            "ResourceType": "instance",
+            "Value": "0 8 1-10 . ."
+        },
+        {
+            "Key": "Stop",
+            "ResourceId": "i-0345187d19860bb9a",
+            "ResourceType": "instance",
+            "Value": "0 18 1-10 . ."
+        },
+        {
+            "Key": "Saving",
+            "ResourceId": "i-0345187d19860bb9a",
+            "ResourceType": "instance",
+            "Value": "Enabled"
+        }
+    ]
+}

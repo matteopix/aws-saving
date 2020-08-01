@@ -1,0 +1,23 @@
+{
+    "Reservations": [
+        {
+            "Groups": [],
+            "Instances": [
+                {
+                    "InstanceId": "i-01234567890",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    }
+                },
+                {
+                    "InstanceId": "i-01234567891",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    }
+                }
+            ]
+        }
+    ]
+}
