@@ -1,0 +1,9 @@
+{
+    "StackResourceSummaries": [
+        {
+            "PhysicalResourceId": "bucket",
+            "ResourceType": "AWS::S3::Bucket",
+            "ResourceStatus": "CREATE_COMPLETE"
+        }
+    ]
+}

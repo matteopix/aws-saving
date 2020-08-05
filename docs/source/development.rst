@@ -58,11 +58,13 @@ Instead, if you have already deployed the lambda in staging, you can run the int
     # integration test for removing the stack you have created
     python3 -m unittest discover -v -p integration_test_only_cloudformation.py
 
-For testing all services, you already have to deploy the stack before run the integration tests below:
+For testing all services, you already have to deploy the stack before run the integration tests below.
+There is something missing: with the commands below, the stack deletion reaches the StackStatus value ``DELETE_FAILED``.
+So you will have to skip manually RDS resources for deleting the stack (see **TODO** in `cloudformation.py <https://github.com/bilardi/aws-saving/blob/master/aws_saving/cloudformation.py>`_).
 
 .. code-block:: bash
 
     cd aws-saving/
     export AWS_PROFILE=your-account
-    # integration test for removing before s3, ec2, rds instances and then the stack you have created
+    # integration test for removing before s3, ec2, rds instances and then it tries to remove the stack you have created
     python3 -m unittest discover -v -p integration_test_all_services.py

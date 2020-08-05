@@ -1,0 +1,24 @@
+{
+    "StackResourceSummaries": [
+        {
+            "PhysicalResourceId": "IamEc2Profile",
+            "ResourceType": "AWS::IAM::InstanceProfile",
+            "ResourceStatus": "CREATE_COMPLETE"
+        },
+        {
+            "PhysicalResourceId": "InstanceEc2Role",
+            "ResourceType": "AWS::IAM::Role",
+            "ResourceStatus": "CREATE_COMPLETE"
+        },
+        {
+            "PhysicalResourceId": "i-01234567890",
+            "ResourceType": "AWS::EC2::Instance",
+            "ResourceStatus": "UPDATE_COMPLETE"
+        },
+        {
+            "PhysicalResourceId": "sg-01234567892",
+            "ResourceType": "AWS::EC2::SecurityGroup",
+            "ResourceStatus": "UPDATE_COMPLETE"
+        }
+    ]
+}

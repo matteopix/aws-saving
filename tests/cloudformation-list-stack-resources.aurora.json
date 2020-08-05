@@ -1,0 +1,39 @@
+{
+    "StackResourceSummaries": [
+        {
+            "PhysicalResourceId": "aurora",
+            "ResourceType": "AWS::RDS::DBCluster",
+            "ResourceStatus": "CREATE_COMPLETE"
+        },
+        {
+            "PhysicalResourceId": "auroraClusterParameterGroup",
+            "ResourceType": "AWS::RDS::DBClusterParameterGroup",
+            "ResourceStatus": "UPDATE_COMPLETE"
+        },
+        {
+            "PhysicalResourceId": "auroraClusterRole",
+            "ResourceType": "AWS::IAM::Role",
+            "ResourceStatus": "CREATE_COMPLETE"
+        },
+        {
+            "PhysicalResourceId": "aurora-1",
+            "ResourceType": "AWS::RDS::DBInstance",
+            "ResourceStatus": "UPDATE_COMPLETE"
+        },
+        {
+            "PhysicalResourceId": "aurora-2",
+            "ResourceType": "AWS::RDS::DBInstance",
+            "ResourceStatus": "CREATE_COMPLETE"
+        },
+        {
+            "PhysicalResourceId": "aurorParameterGroup",
+            "ResourceType": "AWS::RDS::DBParameterGroup",
+            "ResourceStatus": "UPDATE_COMPLETE"
+        },
+        {
+            "PhysicalResourceId": "auroraSubnetGroup",
+            "ResourceType": "AWS::RDS::DBSubnetGroup",
+            "ResourceStatus": "CREATE_COMPLETE"
+        }
+    ]
+}

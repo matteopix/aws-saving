@@ -1,0 +1,47 @@
+{
+    "Stacks": [
+        {
+            "StackName": "aurora",
+            "StackStatus": "UPDATE_COMPLETE",
+            "EnableTerminationProtection": true,
+            "Tags": [
+                {
+                    "Key": "Delete",
+                    "Value": "0 18 . . ."
+                },
+                {
+                    "Key": "Saving",
+                    "Value": "Enabled"
+                }
+            ]
+        },
+        {
+            "StackName": "bucket",
+            "StackStatus": "CREATE_COMPLETE",
+            "Tags": [
+                {
+                    "Key": "Delete",
+                    "Value": "0 18 . . ."
+                },
+                {
+                    "Key": "Saving",
+                    "Value": "Enabled"
+                }
+            ]
+        },
+        {
+            "StackName": "ec2",
+            "StackStatus": "UPDATE_COMPLETE",
+            "Tags": [
+                {
+                    "Key": "Delete",
+                    "Value": "0 18 . . ."
+                },
+                {
+                    "Key": "Saving",
+                    "Value": "Enabled"
+                }
+            ]
+        }
+    ]
+}
